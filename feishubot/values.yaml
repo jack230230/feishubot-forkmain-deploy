@@ -1,36 +1,36 @@
 bot:
   env:
-  - name: ENV_NAME
-    value: main
-  - name: ENV_DOMAIN
-    value: feishubot-rh2y9patu.forkmain.cloud
+    - name: ENV_NAME
+      value: main
+    - name: ENV_DOMAIN
+      value: feishubot-rh2y9patu.forkmain.cloud
   fullnameOverride: bot
   image:
     repository: ghcr.io/jack230230/feishu-bot
-    tag: latest
+    tag: 9f4dd23
   imagePullSecrets:
-  - name: feishubot-docker
+    - name: feishubot-docker
   ingress:
     className: nginx
     enabled: true
     hosts:
-    - host: feishubot-rh2y9patu.forkmain.cloud
-      paths:
-      - path: /
-        pathType: ImplementationSpecific
+      - host: feishubot-rh2y9patu.forkmain.cloud
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
   nocalhost:
     command:
       debug:
-      - ""
+        - ""
       run:
-      - pip3
-      - install
-      - -r
-      - requirements.txt
-      - '&&'
-      - FLASK_APP=server.py
-      - flask
-      - run
+        - pip3
+        - install
+        - -r
+        - requirements.txt
+        - '&&'
+        - FLASK_APP=server.py
+        - flask
+        - run
     configPath: conf/nocalhost.yaml
     env: null
     gitURL: https://github.com/jack230230/feishu-bot.git
@@ -39,8 +39,8 @@ bot:
     language: python
     patches: null
     persistentVolumeDirs:
-    - capacity: 20Gi
-      path: /home/nocalhost-dev
+      - capacity: 20Gi
+        path: /home/nocalhost-dev
     remoteDebugPort: 9009
   service:
     port: 5000
