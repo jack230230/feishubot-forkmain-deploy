@@ -1,44 +1,46 @@
 bot:
   env:
-    - name: ENV_NAME
-      value: main
-    - name: ENV_DOMAIN
-      value: feishubot-rh2y9patu.forkmain.cloud
-    - name: APP_ID
-      value: cli_a3858d5c657e100d
-    - name: APP_SECRET
-      value: jIKH4bkCs4TWGY6w0WQNddOvcFw2HaBZ
-    - name: VERIFICATION_TOKEN
-      value: dRrpIEg7gALQJQjtIKmyBcQLS6tl0Kpv
-    - name: ENCRYPT_KEY
-      value: mmmmddddd
+  - name: ENV_NAME
+    value: main
+  - name: ENV_DOMAIN
+    value: feishubot-rh2y9patu.forkmain.cloud
+  - name: APP_ID
+    value: cli_a3858d5c657e100d
+  - name: APP_SECRET
+    value: jIKH4bkCs4TWGY6w0WQNddOvcFw2HaBZ
+  - name: VERIFICATION_TOKEN
+    value: dRrpIEg7gALQJQjtIKmyBcQLS6tl0Kpv
+  - name: ENCRYPT_KEY
+    value: mmmmddddd
+  - name: LARK_HOST
+    value: open.feishu.cn
   fullnameOverride: bot
   image:
     repository: ghcr.io/jack230230/feishu-bot
-    tag: ad5034d
+    tag: 9f4dd23
   imagePullSecrets:
-    - name: feishubot-docker
+  - name: feishubot-docker
   ingress:
     className: nginx
     enabled: true
     hosts:
-      - host: feishubot-rh2y9patu.forkmain.cloud
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
+    - host: feishubot-rh2y9patu.forkmain.cloud
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
   nocalhost:
     command:
       debug:
-        - ""
+      - ""
       run:
-        - pip3
-        - install
-        - -r
-        - requirements.txt
-        - '&&'
-        - FLASK_APP=server.py
-        - flask
-        - run
+      - pip3
+      - install
+      - -r
+      - requirements.txt
+      - '&&'
+      - FLASK_APP=server.py
+      - flask
+      - run
     configPath: conf/nocalhost.yaml
     env: null
     gitURL: https://github.com/jack230230/feishu-bot.git
@@ -47,8 +49,8 @@ bot:
     language: python
     patches: null
     persistentVolumeDirs:
-      - capacity: 20Gi
-        path: /home/nocalhost-dev
+    - capacity: 20Gi
+      path: /home/nocalhost-dev
     remoteDebugPort: 9009
   service:
     port: 5000
